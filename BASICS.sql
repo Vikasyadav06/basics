@@ -14,3 +14,6 @@ INSERT INTO students VALUES (3,"BKASH",22);
 INSERT INTO students VALUES (4,"JAY",63);
 
 select * FROM students;
+
+DELETE FROM students
+WHERE ID =4;
