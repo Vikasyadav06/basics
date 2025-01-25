@@ -92,5 +92,48 @@ set grade ="A"
 where marks >=70;
 
 delete from student
-where rollno=15
+where rollno=15;
+
+
+
+create table dept (
+id int primary key,
+name varchar(50)
+);  
+
+insert into dept 
+value 
+(101,"english"),
+(102, "hindi");
+
+update dept
+set id =103
+where id =102;
+
+select*from dept;
+
+create table teacher (
+id int primary key,
+name varchar (50) ,
+dept_id int,
+foreign key (dept_id) references dept(id) 
+on update cascade 
+on delete cascade
+); 
+
+insert into teacher value
+(01,"raj",101),
+(02, "shyam",102);
+
+select*from teacher;
+
+alter table teacher
+add column age int not null default 21 ;
+
+alter table teacher
+drop column age ;
+
+alter table teacher 
+rename to teacher_info ;
+
 
