@@ -136,4 +136,10 @@ drop column age ;
 alter table teacher 
 rename to teacher_info ;
 
+alter table teacher 
+change column name full_name varchar(50) ;
+
+alter table teacher
+drop column id ;
+
 
