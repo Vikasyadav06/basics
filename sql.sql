@@ -142,4 +142,13 @@ change column name full_name varchar(50) ;
 alter table teacher
 drop column id ;
 
+select *
+from dept
+inner join teacher 
+on dept.id=teacher.dept_id ;
 
+
+select *
+from dept AS D
+inner join teacher as T 
+on D.id=T.dept_id ;
