@@ -75,6 +75,7 @@ select gender,avg (age)
 from employee_demographics
 group by gender;
 
+# INTERMEDIATE 
 -- join = used for join two tables with same columns
 
 select *
@@ -212,3 +213,97 @@ from employee_salary
 where dept_id = 1
  )
  ;
+
+
+
+
+
+-#- later 
+-- --
+
+
+-- window function 
+
+
+select gender , avg (salary) 
+from employee_demographics as dem 
+join employee_salary as sal 
+on dem.employee_id=sal.employee_id
+group by gender 
+;
+ 
+ 
+select dem.first_name,dem.gender,avg (salary) over(partition by gender) 
+from employee_demographics as dem 
+join employee_salary as sal 
+on dem.employee_id=sal.employee_id
+;
+
+
+
+select dem.first_name,dem.gender,salary,
+sum(salary) over(partition by gender order by dem.employee_id ) as total
+from employee_demographics as dem 
+join employee_salary as sal 
+on dem.employee_id=sal.employee_id
+;
+
+
+# Advance
+-- CTE(common table expresion)
+
+with ctexample as
+(
+select gender ,avg(salary), max(salary),min(salary), count(salary)
+from employee_demographics as dem 
+join employee_salary as sal
+on dem.employee_id=sal.employee_id
+group by gender
+)
+select*
+from ctexample
+;
+
+
+
+
+-- later
+
+
+-- temoraray table -- it only last one session 
+ create temporary table salary_50k
+ select* 
+ from employee_salary
+ where salary >=50000
+ ;
+
+select *from
+salary_50k ;
+
+-- stored procedures
+
+create procedure large_salaries ()
+select *
+from employee_salary
+where salary >= 50000 ;
+select *
+from employee_salary
+where salary >= 10000 ;
+
+
+call large_salaries ;
+
+
+call new_procedure
+;
+
+
+-- trigger and events 
+
+####################
+#############
+#################
+
+
+
+
